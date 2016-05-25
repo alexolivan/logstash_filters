@@ -1,0 +1,3 @@
+ICYUSERNAME [a-zA-Z\.\@\-\+_%]+
+ICYUSER %{ICYUSERNAME}
+ICYACCESS %{IPORHOST:clientip} %{ICYUSER:ident} %{ICYUSER:auth} \[%{HTTPDATE:timestamp}\] "%{WORD:verb} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}" %{NUMBER:response} (?:%{NUMBER:icy_bytes:int}|-) %{QS:referrer} %{QS:agent} %{NUMBER:x_duration:int}

@@ -1,0 +1,6 @@
+MYDATE %{MONTHNUM}/%{MONTHDAY}/%{YEAR}
+MYTIME %{HOUR}:%{MINUTE}:%{SECOND}
+TIMESTAMP %{MYDATE}\@%{MYTIME}
+
+SCERROR <%{TIMESTAMP:timestamp}>\s\[dest\:\s%{IP:clientip}\] connection closed \(\d seconds\) \(UID\: %{NUMBER}\)\[L\: %{NUMBER}\]\{Bytes\: %{NUMBER:Bytes:int}\}%{GREEDYDATA}
+

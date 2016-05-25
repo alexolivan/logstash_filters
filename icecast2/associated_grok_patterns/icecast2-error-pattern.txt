@@ -1,0 +1,5 @@
+MYDATE %{YEAR}[/-]%{MONTHNUM}[/-]%{MONTHDAY}
+MYTIME %{HOUR}:%{MINUTE}:%{SECOND}
+TIMESTAMP %{MYDATE}\s\s%{MYTIME}
+
+ICYERROR \[%{TIMESTAMP:timestamp}\] INFO source/send_to_listener Client %{NUMBER:clientID:int}\s\(%{IP:clientip}\)%{GREEDYDATA}

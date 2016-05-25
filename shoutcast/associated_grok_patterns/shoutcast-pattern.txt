@@ -1,0 +1,1 @@
+SHOUTCASTW3C %{IP:src_ip} %{IP:src_dns} (?<mytimestamp>%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{TIME}) %{NOTSPACE:stream} %{NUMBER:c_reply:int} %{NOTSPACE:user_agent} %{NUMBER:sc_bytes:int} %{NUMBER:x_duration:int} %{NUMBER:avgbandwidt:int}

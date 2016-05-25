@@ -1,0 +1,12 @@
+SCDATE %{MONTHNUM}/%{MONTHDAY}/%{YEAR}
+SCTIME %{HOUR}:%{MINUTE}:%{SECOND}
+SCTIMESTAMP %{SCDATE}\@%{SCTIME}
+
+ICYDATE %{YEAR}[/-]%{MONTHNUM}[/-]%{MONTHDAY}
+ICYTIME %{HOUR}:%{MINUTE}:%{SECOND}
+ICYTIMESTAMP %{ICYDATE}\s\s%{ICYTIME}
+
+ICYERROR \[%{ICYTIMESTAMP:timestamp}\] INFO source/send_to_listener Client %{NUMBER:clientID:int}\s\(%{IP:clientip}\)%{GREEDYDATA}
+SCERROR <%{SCTIMESTAMP:timestamp}>\s\[dest\:\s%{IP:clientip}\] connection closed \(\d seconds\) \(UID\: %{NUMBER}\)\[L\: %{NUMBER}\]\{Bytes\: %{NUMBER:Bytes:int}\}%{GREEDYDATA}
+
+CENTOVAERROR (?:%{SCERROR}|%{ICYERROR})

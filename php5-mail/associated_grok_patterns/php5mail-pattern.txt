@@ -1,0 +1,23 @@
+WINPATH (?:[A-Za-z]+:|\\)(?:\\[^\\?*]*)+
+UNIXPATH (?:/(?:[\w_%!$@:.,-]+|\\.)*)+
+PATH (?:%{UNIXPATH}|%{WINPATH})
+
+EMAIL [.a-zA-Z0-9_-]+@%{IPORHOST}
+
+MYDATE (%{DAY}, %{MONTHDAY} %{MONTH} %{YEAR} %{HOUR}:%{MINUTE}:%{SECOND} [+-]%{INT})
+
+DATASEGMENT [^<]+
+
+
+ENDING1 (X-Sender: %{EMAIL:xsender_address} User-Agent: %{GREEDYDATA:useragent})
+
+ENDING2 (X-Priority: %{INT:xpriority} X-Mailer: %{GREEDYDATA:xmailer})
+
+FROM_SIMPLE ((%{USERNAME:from_data}\s)?<?%{EMAIL:from_address}>?)
+
+FROM_COMPLEX ((%{DATASEGMENT:from_data})?\s<?%{EMAIL:from_address}>?)
+
+
+PHP5MAIL (mail\(\) on \[%{PATH:script}.*To:(%{GREEDYDATA:to_data})?\s<?%{EMAIL:to_address}>? -- Headers: .*Date: %{MYDATE:date}.*From:\s(?:%{FROM_SIMPLE}|%{FROM_COMPLEX}).*Message-ID: <%{EMAIL:ID_address}>.*(?:%{ENDING1}|%{ENDING2}))
+
+

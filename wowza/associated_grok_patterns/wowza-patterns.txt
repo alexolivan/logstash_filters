@@ -1,0 +1,8 @@
+WOWZIP (?:%{IP}|-)
+WOWZNUMBER (?:%{NUMBER}|-)
+WOWZDATA (?:%{DATA}|-)
+WOWZNONNEGINT (?:%{NONNEGINT}|-)
+WOWZTIME %{TIME:time}\t%{WORD:tz}
+
+WOWZAACCESSLOG %{DATE:date}\t%{WOWZTIME}\t%{WORD:xEvent}\t%{WORD:xCategory}\t%{LOGLEVEL:xSeverity}\t%{WOWZNONNEGINT:xStatus}\t%{WOWZDATA:xCtx}\t%{WOWZDATA:xComment}\t%{WOWZDATA:xVHost}\t%{WOWZDATA:xApp}\t%{WOWZDATA:xAppInst}\t%{WOWZNUMBER:xDuration:float}\t%{WOWZDATA:sIp}\t%{WOWZNUMBER:sPort}\t%{WOWZDATA:sURI}\t%{WOWZIP:cIp}\t%{WOWZDATA:cProto}\t%{WOWZDATA:cReferer}\t%{WOWZDATA:cUserAgent}\t%{WOWZNUMBER:clientId}\t%{WOWZNUMBER:csBytes:float}\t%{WOWZNUMBER:scBytes:float}\t%{WOWZNUMBER:xStreamId}\t%{WOWZNUMBER:xSpos:float}\t%{WOWZNUMBER:csStreamBytes:float}\t%{WOWZNUMBER:scStreamBytes:float}\t%{WOWZDATA:xSname}\t%{WOWZDATA:xSnameQuery}\t%{WOWZDATA:xFileName}\t%{WOWZDATA:xFileExt}\t%{WOWZNUMBER:xFileSize:float}\t%{WOWZNUMBER:xFileLength:float}\t%{WOWZDATA:xSuri}\t%{WOWZDATA:xSuriStem}\t%{WOWZDATA:xSuriQuery}\t%{WOWZDATA:csUriStem}\t%{GREEDYDATA:csUriQuery}
+
