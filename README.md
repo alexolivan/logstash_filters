@@ -8,17 +8,20 @@ some did not work to me, others worked but were not what I needed, so, most of t
 There are many sources of code, difficult to credit every one... so its easier to say that there are plenty of reused or modified code here, and I'm not, by far, the only author.
 
 To use this filters, it is necessary to use previous tagging of log lines, since the filter configs do discriminate log lines to be applied on a tag basis.
-This is because I work with a logstash splited .conf files setup (as recommended by many sources), instead of using a single huge .conf file, where config is split in several files at /etc/logstash/logstash.conf, which are linked (activated as needed) in /etc/logstash/conf.d
+This is because I work with a logstash splited configuration file setup (as recommended by many sources), instead of using a single huge .conf file. This means config being split in several files at /etc/logstash/logstash.d folder, which are linked (activated as needed) in /etc/logstash/conf.d folder.
 
-Since order matters (config is read/applied to logs up to down, making log lines be processed "sequentially") split config uses numbers to mark config order (for example, I use 01-inputs.conf to define input config, 10-tagging.conf to add service tags, and 99-outputs.conf for output config. This gives me a range from 11-XXXXX.conf to 98-YYYY.conf to add config filters to services that are applied to logs lines with propper tag).
+Since order matters (config is read/applied to logs up to down, making log lines be processed "sequentially" along configuration read up to down) split config uses numbers on filenames to preserve config order that in a monolithic file is inherent: config files with lower numbers are read first.
+(for example, I use 01-inputs.conf to define input config, 10-tagging.conf to add service tags, and 99-outputs.conf for output config. This gives me a range from 11-XXXXX.conf to 98-YYYY.conf to add config filters to services that are applied to logs lines with propper tag).
 My conf files are named like XX-somename.conf so it's easy to replace XX chars by adequate numbers.
 At the start of every conf file it is easily visible the tag string that triggers that filter/conf to be applied to log lines "as they pass"
 
-Likewise, Almost all of the filters require a grok pattern that is not included by default by logstash package. In my case (Debian), those files had to be put to /opt/logstash/patterns folder, and have propper logstash:logstash ownership on them (but this is very much Debian related, and may vary on other environments).
+Likewise, Almost all of the filters require a grok pattern that is not included by default by logstash package (but not all, a few filters do work without need of an asociated grok pattern).
+In my case (Debian), those grok pattern files files had to be put to /opt/logstash/patterns folder, and have propper logstash:logstash ownership on them (but this is very much Debian related, and may vary on other environments).
+Pattern files have a .txt extension that makes my environment treat them easily, but I stripe that extension in production.
 
 Finally, most of this filters do add Geolocation by using MaxMind's geoIP library that has been packaged in Debian.
-It should be noted that conf files do point to geolite database file path... The file must exist at that path, and that file path may differ from system to system, and if it is not correct it causes errors in Logstash.
-If geolocation is not interesting, simply comment out the geolocation part of the conf files.
+It should be noted that conf files do point to geolite database file path... The file must exist at that path or Logstash will throw ugly errors, so keep an eye on this, since that file path may well differ from system to system.
+If geolocation is not interesting, simply comment out or stripe the geolocation part of the conf files.
 
 The whole thing is in production in Debian wheezy and Jessie, with Losgstash 1.5.x installed from official Elasticsearch Debian repos.
 
