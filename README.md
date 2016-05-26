@@ -28,9 +28,11 @@ The whole thing is in production in Debian wheezy and Jessie, with Losgstash 1.5
 - Icecast2 (2.3.x and 2.4.x)
 - Iptables (Debian wheezy and Jessie)
 - Nginx
+- pfsense2.2 (Pfsense2.2.x blocks)
 - php5-mail
 - postfix
 - pureftpd
 - Shoutcast (1.9.8 and 2.x)
+- Suricata (2.0.x)
 - Varnish
 - WowzaStreamEngine (3.x and 4.x)
