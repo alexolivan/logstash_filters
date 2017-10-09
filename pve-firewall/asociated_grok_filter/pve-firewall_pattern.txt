@@ -1,0 +1,10 @@
+MYTIMESTAMP %{MONTHDAY}/%{MONTH}/%{YEAR}:%{TIME} %{ISO8601_TIMEZONE}
+FRAMETYPE (?:(?:[A-Fa-f0-9]{2}:)[A-Fa-f0-9]{2})
+
+TCP %{INT:num1} %{INT:num2} %{DATA:chain} %{MYTIMESTAMP:mytimestamp} policy %{DATA:policy}: IN=%{DATA:in} PHYSIN=%{DATA:physin} MAC=%{MAC:dst_mac}:%{MAC:src_mac}:%{FRAMETYPE:frametype} SRC=%{IP:src_ip} DST=%{IP:dst_ip} LEN=%{INT:len} TOS=%{DATA:tos} PREC=%{DATA:prec} TTL=%{INT:ttl} ID=%{INT:id} PROTO=%{DATA:protocol} SPT=%{INT:spt} DPT=%{INT:dpt} SEQ=%{INT:seq} ACK=%{INT:ack} WINDOW=%{GREEDYDATA:window}
+
+UDP %{INT:num1} %{INT:num2} %{DATA:chain} %{MYTIMESTAMP:mytimestamp} policy %{DATA:policy}: IN=%{DATA:in} PHYSIN=%{DATA:physin} MAC=%{MAC:dst_mac}:%{MAC:src_mac}:%{FRAMETYPE:frametype} SRC=%{IP:src_ip} DST=%{IP:dst_ip} LEN=%{INT:len} TOS=%{DATA:tos} PREC=%{DATA:prec} TTL=%{INT:ttl} ID=%{INT:id} PROTO=%{DATA:protocol} SPT=%{INT:spt} DPT=%{INT:dpt} LEN=%{GREEDYDATA:len2}
+
+PVEFIREWALL (?:%{TCP}|%{UDP})
+
+

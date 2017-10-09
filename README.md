@@ -25,8 +25,12 @@ If geolocation is not interesting, simply comment out or stripe the geolocation 
 
 The whole thing is in production in Debian wheezy and Jessie, with Losgstash 1.5.x installed from official Elasticsearch Debian repos.
 
+Some filters are also now working flawlessly for months under ELK 5.x stack under Debian Stretch
+
 #####Included conf/grok filters are tested with:
 - Centovacast (Shout1.9.x, 2.x and Ice2.x)
+- CISCO IOS 12.1 ACLs
+- CISCO PIX/ASA 0.8 ACLs
 - HaProxy
 - Icecast2 (2.3.x and 2.4.x)
 - Iptables (Debian wheezy and Jessie)
@@ -35,7 +39,10 @@ The whole thing is in production in Debian wheezy and Jessie, with Losgstash 1.5
 - php5-mail
 - postfix
 - pureftpd
+- pve-firewall (PROXMOX5)
 - Shoutcast (1.9.8 and 2.x)
 - Suricata (2.0.x)
 - Varnish
+- vsftpd
 - WowzaStreamEngine (3.x and 4.x)
+

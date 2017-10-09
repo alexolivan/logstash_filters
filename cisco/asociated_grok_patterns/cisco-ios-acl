@@ -1,0 +1,4 @@
+CISCOIOSTIMESTAMP %{MONTH} +%{MONTHDAY} %{TIME}
+CISCOIOSLOG %{WORD:log_facility}-%{INT:log_severity}-%{WORD:log_mnemonic}:
+CISCOIOSACL %{TIMESTAMP_ISO8601:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{POSINT:syslog_sequence_number}: \*%{CISCOIOSTIMESTAMP:acl_timestamp}: \%%{CISCOIOSLOG} list %{DATA:ACL_name} %{WORD:ACL_action} %{WORD:proto} %{IP:src_ip}\(%{INT:src_port}\) -> %{IP:dst_ip}\(%{INT:dst_port}\)\, %{INT:packets} packet
+

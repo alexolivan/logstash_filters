@@ -1,0 +1,3 @@
+CISCOPIXASALOG %{WORD:log_facility}-%{INT:log_severity}-%{INT:log_sequence_number}:
+CISCOPIXASAACL %{TIMESTAMP_ISO8601:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} : \%%{CISCOPIXASALOG} %{WORD:proto} access denied by ACL from %{IP:src_ip}/%{INT:src_port} to %{WORD:interface}:%{IP:dst_ip}/%{INT:dst_port}
+
