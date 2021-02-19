@@ -1,5 +1,6 @@
 NGUSERNAME [a-zA-Z\.\@\-\+_%]+
 NGUSER %{NGUSERNAME}
-NGINXACCESS %{IPORHOST:clientip} %{NGUSER:ident} %{NGUSER:auth} \[%{HTTPDATE:timestamp}\] "%{WORD:verb} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}" %{NUMBER:response} (?:%{NUMBER:bytes:int}|-) (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) %{QS:agent}
-
-
+RTMPDURATION \((%{NUMBER:rtmp_session_duration.days}d)?%{SPACE}?(%{NUMBER:rtmp_session_duration.hours}h)?%{SPACE}?(%{NUMBER:rtmp_session_duration.minutes}m)?%{SPACE}?%{NUMBER:rtmp_session_duration.seconds}s\)
+NGINXHTTPACCESS %{IPORHOST:clientip} %{NGUSER:ident} %{NGUSER:auth} \[%{HTTPDATE:timestamp}\] "%{WORD:verb} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}" %{NUMBER:response} (?:%{NUMBER:bytes:int}|-) (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) %{QS:agent}
+NGINXRTMPACCESS %{IPORHOST:clientip} \[%{HTTPDATE:timestamp}\] %{WORD:verb} %{QS:rtmpapp} %{QS:rtmpstream} (%{QS:rtmp_params})? - %{NUMBER:rtmp_bytes_received:int} %{NUMBER:rtmp_bytes_sent:int} (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) %{QS:agent} %{RTMPDURATION}
+NGINXACCESS (?:%{NGINXHTTPACCESS}|%{NGINXRTMPACCESS})

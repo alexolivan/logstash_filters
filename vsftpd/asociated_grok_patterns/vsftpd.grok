@@ -1,5 +1,5 @@
 VSFTPD_TIMESTAMP %{DAY} %{MONTH} {1,2}%{MONTHDAY} %{TIME} %{YEAR}
 VSFTPD_PID \[pid %{POSINT:pid}\]
 VSFTPD_CONNECT %{WORD:vsftpd_action}: Client \"%{IP:vsftpd_client_ip}\"
-VSFTPD_ACTION \[%{DATA:vsftpd_user}\] %{WORD:vsftpd_action_status} %{WORD:vsftpd_action}: Client \"%{IP:vsftpd_client_ip}\"(, \"%{GREEDYDATA:vsftpd_file}\", %{DATA:vsftpd_file_size}, %{DATA:vsftpd_file_transfer_speed}|, \"%{GREEDYDATA:vsftpd_file}\", %{DATA:vsftpd_file_transfer_speed}|)$
+VSFTPD_ACTION \[%{DATA:vsftpd_user}\] %{WORD:vsftpd_action_status} %{WORD:vsftpd_action}: Client \"%{IP:vsftpd_client_ip}\"(, \"%{GREEDYDATA:vsftpd_file}\", %{DATA:vsftpd_file_size}, %{DATA:vsftpd_file_transfer_speed}|, \"%{GREEDYDATA:vsftpd_file}\", %{DATA:vsftpd_file_transfer_speed}|, \"%{GREEDYDATA:vsftpd_file}\"|)$
 VSFTPD %{VSFTPD_TIMESTAMP:vsftpd_timestamp} %{VSFTPD_PID} (?:%{VSFTPD_CONNECT}|%{VSFTPD_ACTION})

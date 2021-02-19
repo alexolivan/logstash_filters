@@ -1,0 +1,2 @@
+ICYPLAYLIST %{HTTPDATE:timestamp}\|%{URIPATHPARAM:mountpoint}\|%{INT:sessions}\|%{GREEDYDATA:tittle}
+
